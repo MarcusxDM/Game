@@ -56,7 +56,7 @@ public class Player extends Entity {
 			setVelY(0);
 		}
 	}
-	public void skill1(Point p){
-		handler.addObject(new Projectile(x+width, y + (height/2), 20, 10, ObjectId.Projectile, this, handler));
+	public void skill1(Point dir){
+		handler.addObject(new Projectile(x+width/2, y + (height/2), 20, 10, ObjectId.Projectile, this, dir, handler));
 	}
 }
