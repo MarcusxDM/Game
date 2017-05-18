@@ -8,8 +8,8 @@ import com.game.main.Handler;
 
 public class VoidTile extends Tile{
 
-	public VoidTile(int x, int y, int width, int height,int scale, ObjectId id, Handler handler) {
-		super(x, y, width*scale, height*scale, id, handler);
+	public VoidTile(int x, int y, int width, int height,int scale, boolean solid, ObjectId id, Handler handler) {
+		super(x, y, width*scale, height*scale, solid, id, handler);
 	}
 
 	@Override

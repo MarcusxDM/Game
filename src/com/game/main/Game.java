@@ -5,12 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import com.game.entity.Player;
 import com.game.framework.Camera;
-import com.game.framework.ObjectId;
 import com.game.input.KeyInput;
 import com.game.input.MouseInput;
-import com.game.tile.VoidTile;
+import com.game.stage.Stage;
+import com.game.stage.Stage1;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1481513214977724008L;
@@ -23,7 +22,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	private Camera cam = new Camera();
-	
+	private Stage stage;
 	public synchronized void start(){
 		if(running){
 			return;
@@ -36,11 +35,11 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		handler.setCam(cam);
-		handler.addObject(new Player(100,100,16,32,1,ObjectId.Player,handler));
+		//handler.addObject(new Player(100,100,16,32,1,ObjectId.Player,handler));
 		addKeyListener(new KeyInput(handler));
 		addMouseListener(new MouseInput(handler));
+		stage = new Stage1(handler);
 		
-		handler.addObject(new VoidTile(32*20,32*20,32,32,1,ObjectId.Tile,handler));
 	}
 	private void stop(){
 		

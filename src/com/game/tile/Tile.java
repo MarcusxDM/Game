@@ -7,8 +7,8 @@ import com.game.framework.ObjectId;
 import com.game.main.Handler;
 
 public abstract class Tile extends GameObject {
-
-	public Tile(int x, int y, int width, int height, ObjectId id, Handler handler) {
+	boolean solid;
+	public Tile(int x, int y, int width, int height,boolean solid, ObjectId id, Handler handler) {
 		super(x, y, width, height, id, handler);
 		// TODO Auto-generated constructor stub
 	}

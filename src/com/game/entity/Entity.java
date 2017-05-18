@@ -8,8 +8,8 @@ import com.game.framework.ObjectId;
 import com.game.main.Handler;
 
 public abstract class Entity extends GameObject {
-
-	public Entity(int x, int y, int width, int height, ObjectId id, Handler handler) {
+	boolean solid;
+	public Entity(int x, int y, int width, int height, boolean solid, ObjectId id, Handler handler) {
 		super(x, y, width, height, id, handler);
 	}
 

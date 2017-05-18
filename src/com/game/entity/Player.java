@@ -9,8 +9,8 @@ import com.game.main.Handler;
 import com.game.projectile.Projectile;
 
 public class Player extends Entity {
-	public Player(int x, int y, int width, int height,int scale, ObjectId id, Handler handler) {
-		super(x, y, width*scale, height*scale, id, handler);
+	public Player(int x, int y, int width, int height,int scale, boolean solid, ObjectId id, Handler handler) {
+		super(x, y, width*scale, height*scale, solid, id, handler);
 	}
 
 	@Override
