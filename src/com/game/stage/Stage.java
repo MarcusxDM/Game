@@ -23,6 +23,7 @@ public abstract class Stage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		int levelScale = 16;
 		/*Generates a level from a image.png */
 		int width = level.getWidth();
 		int height = level.getHeight();
@@ -37,10 +38,10 @@ public abstract class Stage {
 				
 				
 				///Building ground
-				if(red==0 && green ==0 && blue==0) handler.addObject(new VoidTile(x*32, y*32, 32, 32, 1, true, ObjectId.Tile, handler));
+				if(red==0 && green ==0 && blue==0) handler.addObject(new VoidTile(x*levelScale, y*levelScale, levelScale, levelScale, 1, true, ObjectId.Tile, handler));
 				
 				///Player
-				if(red==0 && green ==0 && blue==255) handler.addObject(new Player(x*32,y*32,8,16,3,true,ObjectId.Player,handler));
+				if(red==0 && green ==0 && blue==255) handler.addObject(new Player(x*levelScale,y*levelScale,8,16,1,true,ObjectId.Player,handler));
 			}
 		}
 	}

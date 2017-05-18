@@ -13,15 +13,15 @@ import com.game.main.Handler;
 public class Projectile extends GameObject {
 	private int lifeTime = 1000;
 	Entity source;
-	public Projectile(int x, int y, int width, int height, ObjectId id, Entity source, Point dir, Handler handler) {
-		super(x, y, width, height, id, handler);
+	public Projectile(int x, int y, int width, int height, boolean solid, ObjectId id, Entity source, Point dir, Handler handler) {
+		super(x, y, width, height, solid, id, handler);
 		this.source = source;
 		if(dir.x > Game.getScreenWidth()/2){
-			setX(getX() + 10);
+			setX((int)getX() + 10);
 			velX = 30;
 			velY = 0;			
 		}else{
-			setX(getX() - 30);
+			setX((int)getX() - 30);
 			velX = -30;
 			velY = 0;
 		}
@@ -40,7 +40,7 @@ public class Projectile extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int)x, (int)y, width, height);
 	}
 
 }

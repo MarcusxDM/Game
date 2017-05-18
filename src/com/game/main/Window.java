@@ -12,10 +12,12 @@ public class Window {
 		
 		JFrame frame = new JFrame(title);
 		frame.add(game);
+		//frame.setUndecorated(true);
+		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setVisible(true);
 		game.start();
 	}

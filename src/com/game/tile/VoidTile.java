@@ -21,6 +21,6 @@ public class VoidTile extends Tile{
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int)x, (int)y, width, height);
 	}
 }

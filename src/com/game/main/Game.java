@@ -35,7 +35,6 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		handler.setCam(cam);
-		//handler.addObject(new Player(100,100,16,32,1,ObjectId.Player,handler));
 		addKeyListener(new KeyInput(handler));
 		addMouseListener(new MouseInput(handler));
 		stage = new Stage1(handler);

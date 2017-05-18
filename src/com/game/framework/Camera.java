@@ -9,8 +9,8 @@ public class Camera {
 	public void tick(){
 		
 		if(pl != null){
-			setX(-pl.getX() + Game.getScreenWidth()/2);	
-			setY(-pl.getY() + Game.getScreenHeight()/2);
+			setX((int)-pl.getX() + Game.getScreenWidth()/2);	
+			setY((int)-pl.getY() + Game.getScreenHeight()/2);
 		}
 	}
 	
