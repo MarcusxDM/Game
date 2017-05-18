@@ -164,6 +164,6 @@ public class Player extends Entity {
 		}
 	}
 	public void skill1(Point dir){
-		handler.addObject(new Projectile((int) x+width/2,(int) y + (height/2), 20, 10, false, ObjectId.Projectile, this, dir, handler));
+		handler.addObject(new Projectile((int) x+width/2,(int) y + (height/2), 6, 6, false, ObjectId.Projectile, this, dir, handler));
 	}
 }
