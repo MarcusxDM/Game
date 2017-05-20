@@ -3,6 +3,7 @@ package com.game.main;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import com.game.entity.Player;
 import com.game.framework.Camera;
 import com.game.framework.GameObject;
 import com.game.framework.ObjectId;
@@ -14,6 +15,7 @@ import com.game.framework.ObjectId;
  */
 public class Handler {
 	Camera cam;
+	Player player;
 	public LinkedList<GameObject> objList = new LinkedList<GameObject>();
 	
 	public void tick(){
@@ -32,6 +34,7 @@ public class Handler {
 	}
 	public void addObject(GameObject obj){
 		if(obj.getId() == ObjectId.Player){
+			player = (Player) obj;
 			cam.setPlayer(obj);
 		}
 		objList.add(obj);
@@ -45,5 +48,8 @@ public class Handler {
 	}
 	public void setCam(Camera cam) {
 		this.cam = cam;
+	}
+	public Player getPlayer(){
+		return player;
 	}
 }

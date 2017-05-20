@@ -14,7 +14,8 @@ import com.game.tile.Tile;
 public class Player extends Entity {
 	private  final float MAX_SPEED = 10;
 	public Player(int x, int y, int width, int height,int scale, boolean solid, ObjectId id, Handler handler) {
-		super(x, y, width*scale, height*scale, solid, id, handler);
+		super(x, y, width*scale, height*scale, 300, solid, id, handler);
+		HP = maxHP-100;
 	}
 	private void move(){
 		/*
@@ -28,13 +29,15 @@ public class Player extends Entity {
 			GameObject obj = handler.objList.get(i);
 			if(obj.getId() == ObjectId.Tile){
 				Tile ti = (Tile) obj;
-				System.out.println(ti.getBounds());
-				System.out.println(getBoundsTop());
 				if(ti.getBounds().intersects(getBoundsTop())){
 					collisions[0] = ti;
+					jumping = false;
+					falling = true;
 				}
 				if(ti.getBounds().intersects(getBoundsBottom())){
 					collisions[1] = ti;
+					falling = false;
+					jumping = false;
 				}
 				if(ti.getBounds().intersects(getBoundsLeft())){
 					collisions[2] = ti;
@@ -90,10 +93,30 @@ public class Player extends Entity {
 	}
 	@Override
 	public void tick() {
+		System.out.println(gravity);
 		move();
-		if(falling || jumping){
+		if(falling){
 			velY += gravity;
 			if(velY >= MAX_SPEED) velY = MAX_SPEED;
+		}
+		collision();
+		if(jumping){
+			gravity -= 0.1;
+			setVelY(-gravity);
+		}
+		if(gravity <= 0.0){
+			if(jumping){
+				gravity -= 0.1;
+				setVelY(-gravity);
+				if(gravity <= 0.0){
+					jumping = false;
+					falling = true;
+				}
+			}
+		}
+		if(falling){
+			gravity += 0.1;
+			setVelY((int)gravity);
 		}
 	}
 
@@ -128,7 +151,6 @@ public class Player extends Entity {
 			
 
 		}
-		collision();
 	}
 	public enum EVENT{
 		START(),
@@ -151,9 +173,9 @@ public class Player extends Entity {
 	public void jump(EVENT e){
 		if(e == EVENT.START){	
 			jumping = true;
-			//setVelY(-2);
+			gravity = 3;
 		}else if(e == EVENT.STOP){
-			setVelY(0);
+			//setVelY(0);
 		}
 	}
 	public void crouch(EVENT e){

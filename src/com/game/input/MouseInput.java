@@ -26,7 +26,6 @@ public class MouseInput implements MouseListener {
 				pl.skill1(p);
 			}
 		}
-		
 	}
 
 	@Override

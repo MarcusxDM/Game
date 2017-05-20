@@ -1,5 +1,6 @@
 package com.game.stage;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -7,12 +8,14 @@ import javax.imageio.ImageIO;
 
 import com.game.entity.Player;
 import com.game.framework.ObjectId;
+import com.game.hud.HUD;
 import com.game.main.Handler;
 import com.game.tile.VoidTile;
 
 
 public abstract class Stage {
-	Handler handler;
+	protected HUD hud;
+	protected Handler handler;
 	public Stage(Handler handler){
 		this.handler = handler;
 	}
@@ -45,4 +48,6 @@ public abstract class Stage {
 			}
 		}
 	}
+	public abstract void render(Graphics g);
+	public abstract void tick();
 }

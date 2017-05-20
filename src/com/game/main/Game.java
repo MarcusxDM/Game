@@ -75,8 +75,9 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick(){
-		handler.tick();
 		cam.tick();
+		handler.tick();
+		stage.tick();
 	}
 	
 	private void render(){
@@ -90,6 +91,8 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
 		g.translate(cam.getX(), cam.getY());
 		handler.render(g);
+		g.translate(-cam.getX(), -cam.getY());
+		stage.render(g);
 		g.dispose();
 		bs.show();
 	}

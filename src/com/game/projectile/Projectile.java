@@ -11,20 +11,18 @@ import com.game.main.Game;
 import com.game.main.Handler;
 
 public class Projectile extends GameObject {
-	private int lifeTime = 1000;
+	private int lifeTime = 100;
+	private int speed;
 	Entity source;
 	public Projectile(int x, int y, int width, int height, boolean solid, ObjectId id, Entity source, Point dir, Handler handler) {
 		super(x, y, width, height, solid, id, handler);
 		this.source = source;
-		if(dir.x > Game.getScreenWidth()/2){
-			setX((int)getX() + 10);
-			velX = 30;
-			velY = 0;			
-		}else{
-			setX((int)getX() - 30);
-			velX = -30;
-			velY = 0;
-		}
+		speed = 4;
+		double angle = Math.atan2(dir.getY() - Game.getScreenHeight()/2, dir.getX() - Game.getScreenWidth()/2);
+		//xx *= 180 / Math.PI;
+		System.out.println(angle);
+		velX += speed * Math.cos(angle);
+		velY += speed * Math.sin(angle);
 	}
 
 	@Override
@@ -34,7 +32,11 @@ public class Projectile extends GameObject {
 		}
 		x += velX;
 		y += velY;
-		lifeTime -= velX + velY;
+		if(velX >= velY){
+			lifeTime -= velX;
+		}else{
+			lifeTime -= velY;
+		}
 	}
 
 	@Override

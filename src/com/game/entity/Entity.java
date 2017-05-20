@@ -13,8 +13,11 @@ public abstract class Entity extends GameObject {
 	protected double gravity = 0.01f;
 	protected boolean falling = true;
 	protected boolean jumping = false;
-	public Entity(int x, int y, int width, int height, boolean solid, ObjectId id, Handler handler) {
+	protected int HP;
+	protected int maxHP;
+	public Entity(int x, int y, int width, int height, int maxHP, boolean solid, ObjectId id, Handler handler) {
 		super(x, y, width, height, solid, id, handler);
+		this.maxHP = maxHP;
 	}
 
 	@Override
@@ -31,16 +34,22 @@ public abstract class Entity extends GameObject {
 		return new Rectangle((int)getX(),(int)getY(),width,height);
 	}
 	public Rectangle getBoundsTop(){
-		return new Rectangle((int)(x+width*0.2),(int)y-2, (int)(width - width * 0.2),4);
+		return new Rectangle((int)(x+width*0.1),(int)y-2, (int)(width - width * 0.2),4);
 	}
 	public Rectangle getBoundsBottom(){
-		return new Rectangle((int)(x+width*0.2),(int)(y+height-2), (int)(width - width * 0.2), 4);
+		return new Rectangle((int)(x+width*0.1),(int)(y+height-2), (int)(width - (width * 0.2)), 4);
 	}
 	public Rectangle getBoundsLeft(){
-		return new Rectangle((int)x-2,(int)(y + height * 0.2),4, (int)(height - height*0.2));
+		return new Rectangle((int)x-2,(int)(y + height * 0.1),4, (int)(height - height*0.2));
 	}
 	public Rectangle getBoundsRight(){
-		return new Rectangle((int)x + width - 2,(int)(y + height*0.2),4,(int) (height - height * 0.2));
+		return new Rectangle((int)x + width - 2,(int)(y + height*0.1),4,(int) (height - height * 0.2));
+	}
+	public int getHP(){
+		return HP;
+	}
+	public int getMaxHP(){
+		return maxHP;
 	}
 	public boolean isSolid() {
 		return solid;

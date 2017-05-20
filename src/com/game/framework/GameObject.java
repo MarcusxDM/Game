@@ -40,13 +40,13 @@ public abstract class GameObject {
 	public double getVelX(){
 		return velX;
 	}
-	public void setVelX(int x){
+	public void setVelX(double x){
 		this.velX = x;
 	}
 	public double getVelY(){
 		return velY;
 	}
-	public void setVelY(int y){
+	public void setVelY(double y){
 		this.velY = y;
 	}
 	public int getHeight() {
