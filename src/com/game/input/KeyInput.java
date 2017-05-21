@@ -3,9 +3,11 @@ package com.game.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 import com.game.entity.Player;
 import com.game.framework.GameObject;
 import com.game.framework.ObjectId;
+import com.game.main.Game;
 import com.game.main.Handler;
 
 public class KeyInput implements KeyListener {
@@ -34,6 +36,8 @@ public class KeyInput implements KeyListener {
 				case KeyEvent.VK_S:
 					pl.crouch(Player.EVENT.START);
 					break;
+				case KeyEvent.VK_ESCAPE:
+					Game.pause();
 				}
 			}
 		}

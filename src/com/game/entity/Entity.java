@@ -10,14 +10,16 @@ import com.game.main.Handler;
 
 public abstract class Entity extends GameObject {
 	boolean solid;
+	protected double baseSpeed;
 	protected double gravity = 0.01f;
 	protected boolean falling = true;
 	protected boolean jumping = false;
 	protected int HP;
 	protected int maxHP;
-	public Entity(int x, int y, int width, int height, int maxHP, boolean solid, ObjectId id, Handler handler) {
+	public Entity(int x, int y, int width, int height, int maxHP, double baseSpeed, boolean solid, ObjectId id, Handler handler) {
 		super(x, y, width, height, solid, id, handler);
 		this.maxHP = maxHP;
+		this.baseSpeed = baseSpeed;
 	}
 
 	@Override

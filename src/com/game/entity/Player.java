@@ -12,10 +12,12 @@ import com.game.projectile.Projectile;
 import com.game.tile.Tile;
 
 public class Player extends Entity {
-	private  final float MAX_SPEED = 10;
+	protected int level;
+	protected int experience;
+	private final float MAX_SPEED = 10;
 	public Player(int x, int y, int width, int height,int scale, boolean solid, ObjectId id, Handler handler) {
-		super(x, y, width*scale, height*scale, 300, solid, id, handler);
-		HP = maxHP-100;
+		super(x, y, width*scale, height*scale, 300, 2.5, solid, id, handler);
+		HP = 5;
 	}
 	private void move(){
 		/*
@@ -37,7 +39,6 @@ public class Player extends Entity {
 				if(ti.getBounds().intersects(getBoundsBottom())){
 					collisions[1] = ti;
 					falling = false;
-					jumping = false;
 				}
 				if(ti.getBounds().intersects(getBoundsLeft())){
 					collisions[2] = ti;
@@ -90,16 +91,16 @@ public class Player extends Entity {
 				x += velX;
 			}
 		}
+		//collision();
 	}
 	@Override
 	public void tick() {
-		System.out.println(gravity);
 		move();
 		if(falling){
 			velY += gravity;
 			if(velY >= MAX_SPEED) velY = MAX_SPEED;
 		}
-		collision();
+		
 		if(jumping){
 			gravity -= 0.1;
 			setVelY(-gravity);
@@ -172,8 +173,11 @@ public class Player extends Entity {
 	}
 	public void jump(EVENT e){
 		if(e == EVENT.START){	
-			jumping = true;
-			gravity = 3;
+			if(!jumping && !falling){				
+				jumping = true;
+				falling = false;
+				gravity = 3.2;
+			}
 		}else if(e == EVENT.STOP){
 			//setVelY(0);
 		}

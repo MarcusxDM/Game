@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Camera cam = new Camera();
 	private Stage stage;
+	private static boolean paused = false;
 	public synchronized void start(){
 		if(running){
 			return;
@@ -61,7 +62,7 @@ public class Game extends Canvas implements Runnable {
 				tick();
 				ticks++;
 				delta--;
-			}
+			}				
 			render();
 			frames++;
 			if(System.currentTimeMillis()-timer>1000){
@@ -75,9 +76,13 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick(){
-		cam.tick();
-		handler.tick();
-		stage.tick();
+		if(paused){
+			
+		}else{
+			cam.tick();
+			handler.tick();
+			stage.tick();
+		}
 	}
 	
 	private void render(){
@@ -87,12 +92,16 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		g.setColor(Color.RED);
-		g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
-		g.translate(cam.getX(), cam.getY());
-		handler.render(g);
-		g.translate(-cam.getX(), -cam.getY());
-		stage.render(g);
+		if(paused){
+			
+		}else{
+			g.setColor(Color.RED);
+			g.fillRect(0, 0, getScreenWidth(), getScreenHeight());
+			g.translate(cam.getX(), cam.getY());
+			handler.render(g);
+			g.translate(-cam.getX(), -cam.getY());
+			stage.render(g);
+		}
 		g.dispose();
 		bs.show();
 	}
@@ -102,6 +111,9 @@ public class Game extends Canvas implements Runnable {
 	}
 	public static int getScreenHeight(){
 		return HEIGHT*SCALE;
+	}
+	public static void pause(){
+		paused = !paused;
 	}
 	public static void main(String args[]){
 		new Window(WIDTH,HEIGHT,SCALE,TITLE, new Game());
